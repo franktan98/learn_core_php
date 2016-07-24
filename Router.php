@@ -51,6 +51,9 @@ class Router {
 
  */
     }
+    public function get_base_directory(){
+        return $this->base_directory ;
+    }
 
     /**
      * call when class construct
