@@ -48,11 +48,14 @@
          */
         public function index(){
             echo '<br /> Base Directory : '. $this->router->get_base_directory();
+            echo '<br />'; 
             echo '<br /> Host Name : '. $this->router->get_host_name();
-            echo '<br /> Base of URL : '. $this->router->get_base_url();
-            echo '<br /> Base URI : '. $this->router->get_uri();
-            echo '<br />Base PATH  : '. $this->router->get_base_path();
-
+            echo '<br /> Base PATH  : '. $this->router->get_base_path();
+            echo '<br /> URI : '. $this->router->get_uri();
+            echo '<br />'; 
+            echo '<br /> call when redirect 404.';
+            echo '<br /> URL : '. $this->router->get_base_url();
+            echo '<br />'; 
             echo '<br />duration to stop point 1 : '. $this->system_benchmark->get_duration(); 
         }
     }
