@@ -1,18 +1,17 @@
 <?php
-// dun forget to open the remark for LoadModule rewrite_module modules/mod_rewrite.so
-// at httpd.conf and edit 
-// .htaccess file add some modify
-
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
+namespace Tools;
 /**
- * Description of Routing
- *
- * @author frank
+ * Description of Router class
+ * this router use to collect all infromation pass from the url or uri
+ * including the base directory of the main page
+ * 
+ * reminder 
+ * dun forget to open the remark for LoadModule rewrite_module modules/mod_rewrite.so
+ * at httpd.conf and edit 
+ * .htaccess file add some modify
+ * 
+ * @author QQtan(franktan98@yahoo.com)
+ * @since version 0.0.1
  */
 class Router {
     private $uri ; 
@@ -39,13 +38,5 @@ class Router {
         if (strstr($this->uri, '?')) $this->uri = substr($this->uri, 0, strpos($this->uri, '?'));
         $this->uri = '/' . trim($this->uri, '/');
         return $this->uri;
-    }
-    
-    public function index(){
-        echo '<br /> host : '. $this->base_host ; 
-        echo '<br /> base path : '. $this->basepath ;
-        echo '<br /> URI : '. $this->uri ;
-        echo '<br /> directory : '. $this->base_directory ;
-        echo '<br /> url : '. $this->base_url ; 
-    }
+    }    
 }
