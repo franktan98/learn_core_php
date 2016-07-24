@@ -59,13 +59,13 @@ class Router {
         return $this->base_url ;
     }
     public function get_host_name(){
-        return $this->base_directory ;
+        return $this->host_name ;
     }
     public function get_base_path(){
-        return $this->base_base_path ;
+        return $this->base_path ;
     }
     public function get_uri(){
-        return $this->base_uri ;
+        return $this->uri ;
     }
 
     /**
