@@ -11,7 +11,7 @@
     require_once 'loading_list.php' ;
     require_once 'Router.php' ;
 
-    uses /Tools ;
+    use Tools\Router ;
     /**
      * this class is the main class to call when execute
      * @author QQtan(franktan98@yahoo.com)
@@ -32,7 +32,7 @@
             
             $this->router = new Router( );
             
-            echo '<br /> current URI : '.$this->router->get_current_uri();
+            // echo '<br /> current URI : '.$this->router->get_current_uri();
         }
         
         /**
@@ -47,6 +47,7 @@
          * @return void
          */
         public function index(){
+            echo 'Base Directory : '. $this->router->get_base_directory();
             echo '<br />duration to stop point 1 : '. $this->system_benchmark->get_duration(); 
         }
     }
