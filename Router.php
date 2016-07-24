@@ -33,7 +33,7 @@ class Router {
     /**
      * @var string host name
      */
-    private $base_host ; 
+    private $host_name ; 
     
     /**
      * get all information needed ; 
@@ -41,7 +41,7 @@ class Router {
     private function init_class(){
         $this->base_directory = __DIR__ ; 
         $this->base_url = $_SERVER['PHP_SELF'];
-        $this->base_host = $_SERVER['HTTP_HOST'];
+        $this->host_name = $_SERVER['HTTP_HOST'];
         $this->base_path = implode('/', array_slice(explode('/', $_SERVER['SCRIPT_NAME']), 0, -1)) . '/';
         $request_uri = $_SERVER['REQUEST_URI'] ; 
         $this->uri = substr($request_uri , strlen($this->base_path));
@@ -51,8 +51,21 @@ class Router {
 
  */
     }
+
     public function get_base_directory(){
         return $this->base_directory ;
+    }
+    public function get_base_url(){
+        return $this->base_url ;
+    }
+    public function get_host_name(){
+        return $this->base_directory ;
+    }
+    public function get_base_path(){
+        return $this->base_base_path ;
+    }
+    public function get_uri(){
+        return $this->base_uri ;
     }
 
     /**
