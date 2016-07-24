@@ -14,29 +14,48 @@ namespace Tools;
  * @since version 0.0.1
  */
 class Router {
+    /**
+     * @var string uri
+     */
     private $uri ; 
-    private $basepath; 
+    /**
+     * @var string base path
+     */
+    private $base_path; 
+    /**
+     * @var string actual base directory
+     */
     private $base_directory ; 
+    /**
+     * @var string base url
+     */
     private $base_url ; 
+    /**
+     * @var string host name
+     */
     private $base_host ; 
     
+    /**
+     * get all information needed ; 
+     */
     private function init_class(){
         $this->base_directory = __DIR__ ; 
         $this->base_url = $_SERVER['PHP_SELF'];
         $this->base_host = $_SERVER['HTTP_HOST'];
-        $this->basepath = implode('/', array_slice(explode('/', $_SERVER['SCRIPT_NAME']), 0, -1)) . '/';
+        $this->base_path = implode('/', array_slice(explode('/', $_SERVER['SCRIPT_NAME']), 0, -1)) . '/';
         $request_uri = $_SERVER['REQUEST_URI'] ; 
-        $this->uri = substr($request_uri , strlen($this->basepath));
-    }
-
-    public function __construct() {
-        $this->init_class();
-        $this->index();
-    }
-    
-    public function get_current_uri(){
+        $this->uri = substr($request_uri , strlen($this->base_path));
+/*
         if (strstr($this->uri, '?')) $this->uri = substr($this->uri, 0, strpos($this->uri, '?'));
         $this->uri = '/' . trim($this->uri, '/');
-        return $this->uri;
-    }    
+
+ */
+    }
+
+    /**
+     * call when class construct
+     */
+    public function __construct() {
+        $this->init_class();
+    }
 }
