@@ -1,0 +1,12 @@
+2016 July 24 
+Today
+Finish basic github study
+
+Next week
+PHPUnit Learn and try out the unit test for php.
+
+
+Task todo:
+learn MVC design pattern in PHP. 
+
+sample code sorting algorithm in php.learn it.
