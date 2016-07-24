@@ -47,7 +47,12 @@
          * @return void
          */
         public function index(){
-            echo 'Base Directory : '. $this->router->get_base_directory();
+            echo '<br /> Base Directory : '. $this->router->get_base_directory();
+            echo '<br /> Host Name : '. $this->router->get_host_name();
+            echo '<br /> Base of URL : '. $this->router->get_base_url();
+            echo '<br /> Base URI : '. $this->router->get_uri();
+            echo '<br />Base PATH  : '. $this->router->get_base_path();
+
             echo '<br />duration to stop point 1 : '. $this->system_benchmark->get_duration(); 
         }
     }
