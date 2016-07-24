@@ -11,6 +11,7 @@
     require_once 'loading_list.php' ;
     require_once 'Router.php' ;
 
+    uses /Tools ;
     /**
      * this class is the main class to call when execute
      * @author QQtan(franktan98@yahoo.com)
