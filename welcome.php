@@ -21,6 +21,7 @@
         public $system_benchmark ;
         public $router ; 
         public $debug_message ; 
+        public $log_handler ; 
                 
         /**
          * this function is to class initial
@@ -29,6 +30,30 @@
             // setting the debug message and benchmark timer
             $this->system_benchmark = new Simple_Timer();
             $this->debug_message = ''; 
+/*
+            $this->log_handler = new Simple_Log();
+
+            $this->log_handler->set_log_environment(
+                    $this->log_handler->MESSAGE_LEVEL_DEBUG,
+                    $this->router->get_base_directory().'log\\',
+                    'test',
+                    array()
+                    );
+            
+            $this->log_handler->log_me('debug','Testing');
+*/
+            $log_date_time = '['.date('Y-m-d H:i:s').']';
+            $message_level = '[debug]' ; 
+                    
+            $source_message ='test...';
+            
+            $display_log = $log_date_time .'' . $message_level .'-'. $source_message ;
+            //OK this 1 recorded
+            // error_log($source_message , 0);
+            //OK test pass
+            
+            error_log($display_log, 3, '.\log\a.log');
+            // error_log($source_message , 1,"franktan98@yahoo.com");    
             
             $this->router = new Router( );
             
@@ -47,6 +72,7 @@
          * @return void
          */
         public function index(){
+            /*
             echo '<br /> Base Directory : '. $this->router->get_base_directory();
             echo '<br />'; 
             echo '<br /> Host Name : '. $this->router->get_host_name();
@@ -57,6 +83,9 @@
             echo '<br /> URL : '. $this->router->get_base_url();
             echo '<br />'; 
             echo '<br />duration to stop point 1 : '. $this->system_benchmark->get_duration(); 
+             */
+            //MESSAGE_LEVEL_INFORMATION
+            
         }
     }
     $system = new Main();
