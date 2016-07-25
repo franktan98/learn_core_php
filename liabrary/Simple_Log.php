@@ -85,16 +85,57 @@ class Simple_Log{
         return $this->alert_level ; 
     }
     
-    public function log_me(){
-        
+    public function log_me($source_level , $source_message ){
+        $message_level = '';
+        switch ($source_level){
+            case SELF::MESSAGE_LEVEL_EMERGENCY :
+                $message_level = 'EMERGENCY !!!';
+                break ; 
+            case SELF::MESSAGE_LEVEL_ALERT :
+                $message_level = 'ALERT !!!';
+                break ; 
+            case SELF::MESSAGE_LEVEL_CRITICAL :
+                $message_level = 'CRITICAL !!!';
+                break ; 
+            case SELF::MESSAGE_LEVEL_ERROR :
+                $message_level = 'ERROR !!!';
+                break ; 
+            case SELF::MESSAGE_LEVEL_WARNING  :
+                $message_level = 'WARNING';
+                break ; 
+            case SELF::MESSAGE_LEVEL_NOTICE :
+                $message_level = 'NOTICE';
+                break ; 
+            case SELF::MESSAGE_LEVEL_INFORMATION :
+                $message_level = 'INFOR';
+                break ; 
+            default :
+                $message_level = 'DEBUG';
+                break ; 
+        }
+        if ($source_level > SELF::MESSAGE_LEVEL_ERROR){
+            $this->log_to_system( $message_level  .'-'. $source_message);
+        }
+        if ( ($source_level > SELF::MESSAGE_LEVEL_NOTICE)
+                AND ( $source_level > $this->alert_level )) {
+            $this->log_to_email( $message_level  .'-'. $source_message);
+        }
+        if ($source_level > $this->alert_level ){
+                $this->log_to_file( $message_level  .'-'. $source_message);
+        }
+    }
+    
+    private function log_to_system($source_message){
+        error_log($source_message , 0);
     }
     
     private function log_to_file($source_message){
-        error_log($source_message , 3, $this->log_prefix . date('Y-m-d').'.log');
+        // have to check out and test out the system sending email function 
+        error_log($source_message , 3, $this->log_prefix.''.date('Y-m-d').'.log');
     }
     
-    private function log_to_email(){
-        
+    private function log_to_email($source_message){
+        error_log($source_message , 1,"franktan98@yahoo.com");    
     }
     
 }
