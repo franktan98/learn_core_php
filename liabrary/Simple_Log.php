@@ -51,7 +51,7 @@ class Simple_Log{
         $this->log_message = 'Emergency!!! System not executeable';
         $this->log_level = SELF::MESSAGE_LEVEL_DEBUG ;
         $this->alert_level = SELF::MESSAGE_LEVEL_WARNING ;
-        $this->mail->list = array('franktan98@yahoo.com');
+        $this->mail_list = array('franktan98@yahoo.com');
     }
 
     public function __construct() {
@@ -74,6 +74,10 @@ class Simple_Log{
         $this->alert_level = $source_level ; 
     }
     
+    public function get_alert_level(){
+        return $this->alert_level ; 
+    }
+    
     public function set_log_environment($source_alert_level,$source_directory,$source_prefix,$source_mail_list){
         $this->alert_level = $source_alert_level ; 
         $this->log_directory = $source_directory ;
@@ -81,10 +85,6 @@ class Simple_Log{
         $this->log_mail_list = $source_mail_list;
     }
 
-    public function get_alert_level(){
-        return $this->alert_level ; 
-    }
-    
     public function log_me($source_level , $source_message ){
         $message_level = '';
         switch ($source_level){
