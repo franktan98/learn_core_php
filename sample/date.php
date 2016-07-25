@@ -1,5 +1,5 @@
  <?php
-    defined('SAFE_CALL') OR exit('No direct script access allowed');
+//    defined('SAFE_CALL') OR exit('No direct script access allowed');
 
 $start_time = microtime(true);
 date_default_timezone_set('Asia/Kuala_Lumpur');

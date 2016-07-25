@@ -9,7 +9,7 @@
 */
     // Environment setting 
     defined('SAFE_CALL')  OR define('SAFE_CALL', TRUE );
-    defined('DEBUG_LEVEL')  OR define('DEBUG_LEVEL', 'develop');
+    defined('DEBUG_LEVEL')  OR define('DEBUG_LEVEL', 'development');
     //defined('DEBUG_LEVEL')  OR define('DEBUG_LEVEL', 'testing');
     //defined('DEBUG_LEVEL')  OR define('DEBUG_LEVEL', 'profiling');
     //defined('DEBUG_LEVEL')  OR define('DEBUG_LEVEL', 'live');

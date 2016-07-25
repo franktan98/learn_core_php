@@ -29,33 +29,32 @@
         private function init_class(){
             // setting the debug message and benchmark timer
             $this->system_benchmark = new Simple_Timer();
+            $this->router = new Router( );
+
             $this->debug_message = ''; 
-/*
+
             $this->log_handler = new Simple_Log();
 
             $this->log_handler->set_log_environment(
-                    $this->log_handler->MESSAGE_LEVEL_DEBUG,
-                    $this->router->get_base_directory().'log\\',
+                    Simple_Log::MESSAGE_LEVEL_DEBUG,
+                    './log/',
                     'test',
                     array()
                     );
             
             $this->log_handler->log_me('debug','Testing');
-*/
+/*
             $log_date_time = '['.date('Y-m-d H:i:s').']';
             $message_level = '[debug]' ; 
-                    
             $source_message ='test...';
             
-            $display_log = $log_date_time .'' . $message_level .'-'. $source_message ;
+            $display_log = $log_date_time .'' . $message_level .'-'. $source_message ."\r\n";
+*/
             //OK this 1 recorded
             // error_log($source_message , 0);
+            // error_log($display_log, 3, '.\log\a.log');
             //OK test pass
-            
-            error_log($display_log, 3, '.\log\a.log');
             // error_log($source_message , 1,"franktan98@yahoo.com");    
-            
-            $this->router = new Router( );
             
             // echo '<br /> current URI : '.$this->router->get_current_uri();
         }
