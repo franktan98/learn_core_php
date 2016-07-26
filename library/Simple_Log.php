@@ -10,7 +10,7 @@ defined('SAFE_CALL') OR exit('No direct script access allowed');
 /**
  * Description of Simple_Log
  *  
- * this log library is use for 
+ * this is simple log library
  * 
  * reminder 
  * simple log system to enable mail sending please add mailling setting
@@ -134,7 +134,8 @@ class Simple_Log{
     private function log_to_email($source_message){
         if ( ($this->log_level <= SELF::MESSAGE_LEVEL_NOTICE)
                 AND ( $this->log_level  <= $this->alert_level )) {
-            error_log($source_message , 1,"franktan98@yahoo.com");    
+            // this function not ready yet 
+            //error_log($source_message , 1,"franktan98@yahoo.com");    
         }
     }
     
@@ -194,6 +195,6 @@ class Simple_Log{
         
         $source_message = $log_date_time . ' ' . $message_level . ':' .$source_message . "\r\n" ; 
         $this->log_to_file( $message_level  .'-'. $source_message);
-        //$this->log_to_email( $message_level  .'-'. $source_message);
+        $this->log_to_email( $message_level  .'-'. $source_message);
     }
 }
