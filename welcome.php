@@ -10,8 +10,11 @@
     require_once 'config.php' ;
     require_once 'loading_list.php' ;
     require_once 'Router.php' ;
+    date_default_timezone_set('Asia/Kuala_Lumpur');
 
     use Tools\Router ;
+    use SimpleLibrary\Simple_Log ;
+    use SimpleLibrary\Simple_Timer ;
     /**
      * this class is the main class to call when execute
      * @author QQtan(franktan98@yahoo.com)
@@ -36,24 +39,10 @@
             $this->log_handler = new Simple_Log();
 
             $this->log_handler->set_log_environment(
-                    Simple_Log::MESSAGE_LEVEL_DEBUG,
-                    './log/',
-                    'test',
-                    array()
-                    );
+                    Simple_Log::MESSAGE_LEVEL_DEBUG,'./log/','test',array());
             
             $this->log_handler->log_me('debug','Testing');
-/*
-            $log_date_time = '['.date('Y-m-d H:i:s').']';
-            $message_level = '[debug]' ; 
-            $source_message ='test...';
-            
-            $display_log = $log_date_time .'' . $message_level .'-'. $source_message ."\r\n";
-*/
-            //OK this 1 recorded
-            // error_log($source_message , 0);
-            // error_log($display_log, 3, '.\log\a.log');
-            //OK test pass
+            // this email when error function not yet testing 
             // error_log($source_message , 1,"franktan98@yahoo.com");    
             
             // echo '<br /> current URI : '.$this->router->get_current_uri();
@@ -71,22 +60,10 @@
          * @return void
          */
         public function index(){
-            /*
-            echo '<br /> Base Directory : '. $this->router->get_base_directory();
-            echo '<br />'; 
-            echo '<br /> Host Name : '. $this->router->get_host_name();
-            echo '<br /> Base PATH  : '. $this->router->get_base_path();
-            echo '<br /> URI : '. $this->router->get_uri();
-            echo '<br />'; 
-            echo '<br /> call when redirect 404.';
-            echo '<br /> URL : '. $this->router->get_base_url();
-            echo '<br />'; 
-            echo '<br />duration to stop point 1 : '. $this->system_benchmark->get_duration(); 
-             */
-            //MESSAGE_LEVEL_INFORMATION
             
         }
     }
+
     $system = new Main();
     
     $system->index();

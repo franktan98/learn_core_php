@@ -1,6 +1,6 @@
 <?php
 
 // liabrary benchmark timer loading
-    include_once 'liabrary/Simple_Timer.php';
-    include_once 'liabrary/Simple_Log.php' ;
+    include_once 'library/Simple_Timer.php';
+    include_once 'library/Simple_Log.php' ;
 ?>

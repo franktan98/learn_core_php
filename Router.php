@@ -1,5 +1,6 @@
 <?php
 namespace Tools;
+defined('SAFE_CALL') OR exit('No direct script access allowed');
 /**
  * Description of Router class
  * this router use to collect all infromation pass from the url or uri
