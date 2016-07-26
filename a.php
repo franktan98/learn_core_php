@@ -12,6 +12,7 @@
                <div style="float:left;width:0px;height:600px">
                     <pre>
                         <a href="sample/date.php" target="sample">Date time formating </a>
+                        <a href="sample/text_reader.php" target="sample">text reader</a>
                         Others coming soon sample
                     </pre>
                </div>

@@ -57,7 +57,7 @@ class Simple_Text {
             {
                 $return_value[] = fgets($myfile) ;
             }
-        fclose($myfile);
+            fclose($myfile);
         } catch (Exception $ex) {
             $return_value = 'file not found or reading permission deny.';
         }
@@ -72,3 +72,26 @@ class Simple_Text {
         
     }
 }
+
+/*
+    try
+    {
+      $fileName = 'uploads/Team/img/'.$team_id.'.png';
+
+      if ( !file_exists($fileName) ) {
+        throw new Exception('File not found.');
+      }
+
+      $fp = fopen($fileName, "rb");
+      if ( !$fp ) {
+        throw new Exception('File open failed.');
+      }  
+      $str = stream_get_contents($fp);
+      fclose($fp);
+
+      // send success JSON
+
+    } catch ( Exception $e ) {
+      // send error message if you can
+    } 
+ */

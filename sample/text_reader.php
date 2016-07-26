@@ -9,7 +9,7 @@
     echo print_r($text_reader->read_text_file('', 'sample.ini')); 
     echo '</pre>';
     echo '<pre>';
-    echo print_r($text_reader->read_speacial_text('', 'sample.ini',true)); 
+    echo print_r($text_reader->read_speacial_text('', 'samplsae.ini',true)); 
     echo '</pre>';
 ?>
 
