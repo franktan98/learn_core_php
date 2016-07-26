@@ -18,6 +18,7 @@ echo "(n): " . date("n" , $current_date_time) . "<br />";
 echo "(F): " . date("F" , $current_date_time) . "<br />";
 echo "(t): number of day in month : " . date("t" , $current_date_time) . "<br />";
 echo "(L) Leap Year : " . date("L" , $current_date_time) . "<br />";
+echo "(GMT) date time format : " . gmdate(DATE_RFC822); 
 
 echo "<br />";
 echo "Current Time (H:i:s) : " . date("H:i:s" , $current_date_time). "<br />";
