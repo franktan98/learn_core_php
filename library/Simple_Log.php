@@ -1,13 +1,25 @@
 <?php
 namespace SimpleLibrary;
 defined('SAFE_CALL') OR exit('No direct script access allowed');
-/*
+/**
+ * this file develop by core php, as my personal php coding skill 
+ * test on understanding, reference, and also a sample.
+ * try to keep good pratice
  */
 
 /**
  * Description of Simple_Log
- *
- * @author frank
+ *  
+ * this log library is use for 
+ * 
+ * reminder 
+ * simple log system to enable mail sending please add mailling setting
+ * into php.ini file
+ * 
+ * @author QQtan(franktan98@yahoo.com)
+ * @since version 0.0.1
+ * 
+ * @todo complite the email log sending function
  */
 class Simple_Log{
     // follow 
@@ -43,6 +55,10 @@ class Simple_Log{
     private $log_mail_list ; 
     private $alert_level ;
     
+    /**
+     * initiliaze of the class
+     * set to default setting ready to use mode
+     */
     private function init_class(){
         $this->log_prefix = 'log' ; 
         $this->log_directory = '/';
@@ -52,9 +68,13 @@ class Simple_Log{
         $this->mail_list = array('franktan98@yahoo.com');
     }
 
+    /**
+     * define message level with the string given
+     * 
+     * @param type $source_level message level
+     */
     private function define_message_level($source_level){
-        $source_level = strtolower($source_level);
-        switch ($source_level){
+        switch (strtolower($source_level)){
             case 'emergency' : 
                 $this->log_level = SELF::MESSAGE_LEVEL_EMERGENCY ;
                 break ; 
@@ -82,18 +102,35 @@ class Simple_Log{
         }
     }
 
+    /**
+     * log to the system log file
+     * 
+     * @param type $source_message message send to log
+     */
     private function log_to_system($source_message){
         if ($this->log_level <= SELF::MESSAGE_LEVEL_ERROR){
             error_log($source_message , 0);
         }
     }
     
+    /**
+     * log to the file we define directory and also file with prefix name 
+     * and follow by date of the log record.
+     * 
+     * @param type $source_message message send to log file
+     */
     private function log_to_file($source_message){
         if ($this->log_level  <= $this->alert_level ){
-            error_log($source_message , 3, $this->log_directory .$this->log_prefix.''.date('Y-m-d').'.log');
+            error_log($source_message , 3, 
+                    $this->log_directory .$this->log_prefix.''.date('Y-m-d').'.log');
         }
     }
-    
+    /**
+     * will send message via email if the level is more then alert level we setting 
+     * or higher then NOTICE level.
+     * 
+     * @param type $source_message message to send via email
+     */
     private function log_to_email($source_message){
         if ( ($this->log_level <= SELF::MESSAGE_LEVEL_NOTICE)
                 AND ( $this->log_level  <= $this->alert_level )) {
@@ -125,6 +162,14 @@ class Simple_Log{
         return $this->alert_level ; 
     }
     
+    /**
+     * setting log message environment
+     * 
+     * @param type $source_alert_level alert level
+     * @param type $source_directory directory to store log
+     * @param type $source_prefix prefix of log
+     * @param type $source_mail_list mailing list to send when log request
+     */
     public function set_log_environment($source_alert_level,$source_directory,$source_prefix,$source_mail_list){
         $this->alert_level = $source_alert_level ; 
         $this->log_directory = $source_directory ;
@@ -132,6 +177,13 @@ class Simple_Log{
         $this->log_mail_list = $source_mail_list;
     }
 
+    /**
+     * will deside to log into system log file, define log file or sending via email
+     * depand on the source level provide
+     * 
+     * @param string $source_level the level of this message e.g.:'debug','infor','notice','warning','error','critical','emegency' 
+     * @param string $source_message 'message send to log file' ; 
+     */
     public function log_me($source_level , $source_message ){
         $this->define_message_level($source_level);
         
