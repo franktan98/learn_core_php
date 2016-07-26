@@ -46,11 +46,13 @@ class Router {
         $this->base_path = implode('/', array_slice(explode('/', $_SERVER['SCRIPT_NAME']), 0, -1)) . '/';
         $request_uri = $_SERVER['REQUEST_URI'] ; 
         $this->uri = substr($request_uri , strlen($this->base_path));
-/*
-        if (strstr($this->uri, '?')) $this->uri = substr($this->uri, 0, strpos($this->uri, '?'));
-        $this->uri = '/' . trim($this->uri, '/');
+    }
 
- */
+    /**
+     * call when class construct
+     */
+    public function __construct() {
+        $this->init_class();
     }
 
     public function get_base_directory(){
@@ -67,12 +69,5 @@ class Router {
     }
     public function get_uri(){
         return $this->uri ;
-    }
-
-    /**
-     * call when class construct
-     */
-    public function __construct() {
-        $this->init_class();
     }
 }
