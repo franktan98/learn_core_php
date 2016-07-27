@@ -20,7 +20,7 @@
      * @author QQtan(franktan98@yahoo.com)
      * @since version 0.0.1
      */
-    class Main{
+    class SimpleSystem{
         public $system_benchmark ;
         public $router ; 
         public $debug_message ; 
@@ -41,11 +41,12 @@
             $this->log_handler->set_log_environment(
                     Simple_Log::MESSAGE_LEVEL_DEBUG,'./log/','test',array());
             
-            $this->log_handler->log_me('debug','Testing');
             // this email when error function not yet testing 
             // error_log($source_message , 1,"franktan98@yahoo.com");    
             
-            // echo '<br /> current URI : '.$this->router->get_current_uri();
+            $this->log_handler->log_me('debug','URL Receive : '.$this->router->get_uri());
+            $this->log_handler->log_me('debug',
+                    'Full URL Process : '. $this->router->get_host_name().$this->router->get_base_url());
         }
         
         /**
@@ -60,11 +61,10 @@
          * @return void
          */
         public function index(){
-            
         }
     }
 
-    $system = new Main();
+    $system = new SimpleSystem();
     
     $system->index();
     
