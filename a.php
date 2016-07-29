@@ -13,6 +13,8 @@
                     <pre>
                         <a href="sample/date.php" target="sample">Date time formating </a>
                         <a href="sample/text_reader.php" target="sample">text reader</a>
+                        <a href="sample/directory.php" target="sample">Directory and File</a>
+                        <a href="sample/loop_control.php" target="sample">loop control</a>
                         Others coming soon sample
                     </pre>
                </div>
