@@ -72,32 +72,4 @@ class Simple_Text {
         
         return $return_value;
     }
-
-    public function append_file() {
-        
-    }
-
 }
-
-/*
-    try
-    {
-      $fileName = 'uploads/Team/img/'.$team_id.'.png';
-
-      if ( !file_exists($fileName) ) {
-        throw new Exception('File not found.');
-      }
-
-      $fp = fopen($fileName, "rb");
-      if ( !$fp ) {
-        throw new Exception('File open failed.');
-      }  
-      $str = stream_get_contents($fp);
-      fclose($fp);
-
-      // send success JSON
-
-    } catch ( Exception $e ) {
-      // send error message if you can
-    } 
- */
