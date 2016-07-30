@@ -37,13 +37,44 @@ function create_table($source_connection, $source_table_name,$source_table_colum
     $sql = 'CREATE TABLE '.$source_table_name . '('.$source_table_columns.')';
     echo $sql ; 
     if ($source_connection->query($sql) === TRUE) {
-        $return_value =  "Table MyGuests created successfully";
+        $return_value =  "Table $source_table_name created successfully";
     } else {
         $return_value =  "Error creating table: " . $source_connection->error;
     }
     return $return_value ; 
 }
 
+function insert_into_table($source_connection, $source_table , $source_record ){
+    $return_value = '' ;
+    $sql = "INSERT INTO $source_table (firstname, lastname)
+    VALUES ($source_record)";
+
+    if ($source_connection->query($sql) === TRUE) {
+        $return_value= "New record created successfully";
+    } else {
+        $return_value= "Error: " . $sql . "<br>" . $source_connection->error;
+    }    
+    return $return_value;
+}
+
+function update_records($source_connection, $source_table , $source_match_recrod, $source_record ){
+    $return_value = '' ;
+    $sql = "UPDATE $source_table SET $source_record WHERE $source_match_recrod ";
+    if ($source_connection->query($sql) === TRUE) {
+        $return_value= "Record updated successfully";
+    } else {
+        $return_value= "Error: " . $sql . "<br>" . $source_connection->error;
+    }    
+    return $return_value;
+}
+
+function extract_table($source_connection, $source_select_item , $source_table){
+    $return_value = null;
+    $sql = "SELECT $source_select_item FROM $source_table";
+    $return_value = $source_connection->query($sql);
+    
+    return $return_value ; 
+}
 
 //VAR
 $servername = "localhost";
@@ -56,8 +87,10 @@ $table_column = 'id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,'.
     'firstname VARCHAR(30) NOT NULL,'.
     'lastname VARCHAR(30) NOT NULL,'.  
     'reg_date TIMESTAMP';
-//
 $message = '' ; 
+$select_item = 'id, firstname, lastname';
+// CODE BEGIN
+//mysqli("localhost", "username", "password", "", port) // if not use default port 
 $conn = new mysqli($servername, $username, $password,$database_name);
 if ($conn->connect_error) {
     echo create_database($servername, $username, $password,$database_name); 
@@ -70,34 +103,35 @@ if ($conn->connect_error) {
     check_table_exits($executable_connection,$table_name)
             ? $message='table exists' 
             : $message=create_table($executable_connection,$table_name,$table_column);
-    echo $message ; 
+    echo $message ;
+    echo '<br />';
+    echo 'update progress ...';
+    echo '<br />';
+    echo 'update 1st record date time as last name...';
+    $current_datetime = date('Y-m-d H:i:s');
+    $update_data="firstname = 'Tan$current_datetime'";
+    $match_update = "id=1";
+    echo update_records($executable_connection, $table_name, $match_update , $update_data);
+    echo '<br />';
+    echo 'insert data 1st name prefix tan with date time, last name as hk...';
+    $insert_data = "'Tan$current_datetime','HK'";
+    echo insert_into_table($executable_connection, $table_name , $insert_data);
+
+    echo '<br />';
+    $records = extract_table($executable_connection, '*' , $table_name);
+    if ($records ->num_rows > 0) {
+        // output data of each row
+        while($row = $records->fetch_assoc()) {
+            echo "id: " . $row["id"]. " - Name: " . $row["firstname"]. " " 
+                    . $row["lastname"]. "create at ".$row['reg_date']."<br>";
+        }
+    } else {
+        echo "0 results";
+    }
+
 }
 $executable_connection->close();
 $conn->close();
 
-/*
-// prepare and bind
-$stmt = $conn->prepare("INSERT INTO MyGuests (firstname, lastname, email) VALUES (?, ?, ?)");
-$stmt->bind_param("sss", $firstname, $lastname, $email);
 
-// set parameters and execute
-$firstname = "John";
-$lastname = "Doe";
-$email = "john@example.com";
-$stmt->execute();
-
-$firstname = "Mary";
-$lastname = "Moe";
-$email = "mary@example.com";
-$stmt->execute();
-
-$firstname = "Julie";
-$lastname = "Dooley";
-$email = "julie@example.com";
-$stmt->execute();
-
-echo "New records created successfully";
-
-$stmt->close();
-*/
 ?> 
