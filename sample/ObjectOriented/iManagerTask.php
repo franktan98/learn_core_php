@@ -1,4 +1,6 @@
 <?php
+namespace OO_Sample ; 
+
 interface iManagerTask{
     public function compeling_report();
     public function scheduling_task();
