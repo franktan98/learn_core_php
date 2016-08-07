@@ -2,6 +2,7 @@
 require_once 'Human.php';
 require_once 'Staff.php';
 require_once 'Manager.php';
+require_once 'NewCustomer.php';
 
 use OO_Sample\Human;
 use OO_Sample\Staff;
@@ -50,3 +51,15 @@ use OO_Sample\Manager;
     echo 'new staff position is '. $manager->__get('position');
     echo '<br /> now he/she is ';
     $manager->scheduling_task();
+    echo '<h1>';
+    echo 'New customer (abstract class).';
+    echo '</h1>';
+    $customer1 = new NewCustomer('Fr');
+    echo '<br /> what he/she do ....';
+    $customer1->make_transaction();
+    echo '<br /> what he/she do ....';
+    $customer1->cancel_transaction();
+    echo '<br /> after sell service ....';
+    $customer1->service();
+    
+    

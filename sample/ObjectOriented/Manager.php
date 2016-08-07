@@ -3,8 +3,7 @@
 //a simple class to show how Inheritance of object oriented programming with php
 namespace OO_Sample ; 
 //use OO_Sample\Human;
-//require_once 'iNormalStaffTask.php';
-//require_once 'iGeneralTask.php';
+require_once 'iNormalStaffTask.php';
 require_once 'iManagerTask.php';
 
 class Manager extends Human implements iManagerTask, iNormalStaffTask{
