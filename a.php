@@ -12,7 +12,8 @@
                     <br/><a href="sample/date.php" target="sample">2016 Jul -- Date time formating </a>
                     <br/><a href="sample/text_reader.php" target="sample">2016 Jul -- text reader</a>
                     <br/><a href="sample/loop_control.php" target="sample">2016 Jul 29 loop control</a>
-                    <br/><a href="sample/mysqli_sample.php" target="sample">2016 Jul 30 loop control</a>
+                    <br/><a href="sample/mysqli_sample.php" target="sample">2016 Jul 30 mysqli control</a>
+                    <br/><a href="sample/ObjectOriented/class_caller.php" target="sample">2016 Jul 31 OOP</a>
                     <br/>
                     Pending
                     <br/>
@@ -33,7 +34,7 @@
                     Data Structure
                     <ul>
                         <li>Queue</li>
-                        <li>Stack</li>
+                        <li><a href="sample/stack.php" target="sample">2016 Aug 7 Stack</a></li>
                         <li>Hash</li>
                         <li>Tree</li>
                         <li></li>
