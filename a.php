@@ -14,6 +14,8 @@
                     <br/><a href="sample/loop_control.php" target="sample">2016 Jul 29 loop control</a>
                     <br/><a href="sample/mysqli_sample.php" target="sample">2016 Jul 30 mysqli control</a>
                     <br/><a href="sample/ObjectOriented/class_caller.php" target="sample">2016 Jul 31 OOP</a>
+                    <br/><a href="sample/email.php" target="sample">2016 Aug 08 email</a>
+                    <br/><a href="sample/pdf.php" target="sample">2016 Aug 08 pdf</a>
                     <br/>
                     Pending
                     <br/>
