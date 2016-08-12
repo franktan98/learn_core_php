@@ -13,6 +13,8 @@ defined('SAFE_CALL') OR exit('No direct script access allowed');
  * 
  * @author QQtan(franktan98@yahoo.com)
  * @since version 0.0.1
+ * 
+ * @todo Update it become simple RESFfull API and support.
  */
 class Router {
     /**
