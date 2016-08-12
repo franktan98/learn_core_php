@@ -21,12 +21,14 @@ https://www.google.com/settings/security/lesssecureapps
  turn on the less security selection 
  * 
 by following those step now successfull sending email via gamil
+
+have to test up how many email sending per second 
  */
 
 $to = "franktan98@yahoo.com";
 $subject = "Hi!";
 $body = "Hi,\n\nHow are you?";
-$headers = "From: franktan98@gmail.com" . "\r\n";
+$headers = "From: franktan.debug@gmail.com" . "\r\n";
 if (mail($to, $subject, $body, $headers)) {
     echo ("Message successfully sent!");
 } else {
