@@ -18,8 +18,6 @@ defined('SAFE_CALL') OR exit('No direct script access allowed');
  * 
  * @author QQtan(franktan98@yahoo.com)
  * @since version 0.0.1
- * 
- * @todo complite the email log sending function
  */
 class Simple_Log{
     // follow 
