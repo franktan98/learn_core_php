@@ -135,7 +135,7 @@ class Simple_Log{
         if ( ($this->log_level <= SELF::MESSAGE_LEVEL_NOTICE)
                 AND ( $this->log_level  <= $this->alert_level )) {
             // this function not ready yet 
-            //error_log($source_message , 1,"franktan98@yahoo.com");    
+            error_log($source_message , 1,"franktan98@yahoo.com");    
         }
     }
     
