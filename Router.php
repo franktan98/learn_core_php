@@ -36,6 +36,8 @@ class Router {
      */
     private $host_name ; 
     
+    private $is_https ; 
+    
     /**
      * get all information needed ; 
      */
@@ -46,6 +48,7 @@ class Router {
         $this->base_path = implode('/', array_slice(explode('/', $_SERVER['SCRIPT_NAME']), 0, -1)) . '/';
         $request_uri = $_SERVER['REQUEST_URI'] ; 
         $this->uri = substr($request_uri , strlen($this->base_path));
+        $this->is_https = $_SERVER['HTTPS'];
     }
 
     /**
@@ -53,6 +56,18 @@ class Router {
      */
     public function __construct() {
         $this->init_class();
+    }
+    
+    public function get_all_infor(){
+        $return_value = array(
+            'base_directory' => $this->base_directory ,
+            'base_url'=> $this->base_url ,
+            'host_name' => $this->host_name ,
+            'base_path'=> $this->base_path,
+            'uri'=> $this->uri,
+            'is_https' => $this->is_https
+        );
+        return $return_value ; 
     }
 
     public function get_base_directory(){
