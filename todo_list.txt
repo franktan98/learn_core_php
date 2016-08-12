@@ -1,22 +1,6 @@
-2016 July 24 
+2016 Aug 13
 Today
-Finish basic github study
+Research on RESTfull Service
 
 Next week commit task list
-text file reading
-text file writing
-text file appending
-csv file generator
-csv file reader
-database CURD with pdo
-database CURD with mysqli
-prepare statement for database using
 
-PHPUnit Learn and try out the unit test for php.
-
-
-Task todo:
-learn MVC design pattern in PHP. 
-learn GOF design pattern
-
-sample code sorting algorithm in php.learn it.

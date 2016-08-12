@@ -15,31 +15,79 @@
                     <br/><a href="sample/mysqli_sample.php" target="sample">2016 Jul 30 mysqli control</a>
                     <br/><a href="sample/ObjectOriented/class_caller.php" target="sample">2016 Jul 31 OOP</a>
                     <br/><a href="sample/email.php" target="sample">2016 Aug 08 email</a>
-                    <br/><a href="sample/pdf.php" target="sample">2016 Aug 08 pdf</a>
                     <br/>
-                    Pending
+                    Data Structure
+                    <ul>
+                        <li><a href="sample/stack.php" target="sample">2016 Aug 7 Stack</a></li>
+                    </ul>
+                    
+                    TODO List
                     <br/>
-                    <a href="sample/directory.php" target="sample">Directory and File</a>
+                    <br/><a href="sample/directory.php" target="sample">Directory and File</a>
+                    <br/><a href="#" target="sample">AJAX</a>
+                    <br/><a href="#" target="sample">JSON</a>
+                    <br/><a href="#" target="sample">XML</a>
+                    <br/><a href="#" target="sample">POSIX</a>
+                    <br/><a href="#" target="sample">2016 Aug 13 CURL </a>
+                    <br/><a href="#" target="sample">Regexp</a>
+                    <br/><a href="#" target="sample">file uploader</a>
+                    <br/><a href="#" target="sample">session</a>
+                    <br/><a href="#" target="sample">encryption</a>
+                    <br/><a href="#" target="sample">zip</a>
+                    <br/><a href="#" target="sample">socket</a>
+                    <br/><a href="#" target="sample">SOAP</a>
+                    <br/><a href="#" target="sample">REST</a>
+                    <br/><a href="#" target="sample">string</a>
+                    <br/><a href="#" target="sample">Caching</a>
+                    <br/><a href="#" target="sample">FTP</a>
+                    <br/><a href="#" target="sample">RPC</a>
+                    <br/><a href="#" target="sample">CAPTCHA</a>
+                    <br/><a href="#" target="sample">Cookies</a>
+                    <br/><a href="#" target="sample">Directory</a>
+                    <br/><a href="#" target="sample">ReflactionClass</a>
+                    <br/><a href="#" target="sample">Linux cron job</a>
+                    <br/><a href="#" target="sample">PDF with TCPDF</a>
+                    <br/><a href="#" target="sample">excel with phpExcel</a>
                     <br/>
                     Sorting Algoritham
                     <ul>
-                        <li>Sort</li>
+                        <li>Bubble Sort</li>
+                        <li>Selection Sort</li>
+                        <li>Insertion Sort</li>
+                        <li>Merge Sort</li>
+                        <li>Quick Sort</li>
                     </ul>
+                    Searching Algoritham
+                    <ul>
+                        <li>Depth First Search</li>
+                        <li>Breath First Search</li>
+                        <li>Binary Search</li>
+                    </ul>
+                    
 
                     GOF Design Pattern
                     <ul>
-                        <li>Creation</li>
+                        <li><a href="#" target="sample">MVC</a></li>
                         <li>Creation</li>
                         <li>Creation</li>
                     </ul>
 
                     Data Structure
                     <ul>
+                        <li>Link List</li>
                         <li>Queue</li>
-                        <li><a href="sample/stack.php" target="sample">2016 Aug 7 Stack</a></li>
                         <li>Hash</li>
                         <li>Tree</li>
-                        <li></li>
+                        <li>Graph</li>
+                    </ul>
+                    
+                    Topic to study
+                    <ul>
+                        <li>Dynamic Programming</li>
+                        <li>PhpUnit</li>
+                        <li>phpDocumentation</li>
+                        <li>php Coding Standard</li>
+                        <li>about github</li>
                     </ul>
                 </div>
 
