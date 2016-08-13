@@ -11,7 +11,7 @@ class View{
     private $page_template_request ; 
     private $temp_cert_check ; 
     
-    private function init_class(){
+    private function init_class(){  
         $this->header = '' ;
         $this->footer = '' ;
         $this->header_script = null ;
@@ -59,15 +59,14 @@ class View{
     
     private function load_page($source_url, array $source_parameter = null){
         //$file = file_get_contents($source_url, true);
+        echo var_dump($source_parameter);
+        is_null($source_parameter)?$source_parameter = array() : null ; 
         ob_start();
         foreach($source_parameter as $key => $value ){
             $$key = $value ;
         }
-        
         require $source_url ; 
-        
         $return_value = ob_get_clean();
-
         return $return_value;
     }
     

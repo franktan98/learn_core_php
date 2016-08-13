@@ -1,7 +1,8 @@
 <?php
 class Controller{
     protected $model ; 
-    protected $view ; 
+    protected $view ;
+    protected $method ; 
     
     private function init_class(){
         $this->model = null ; 
