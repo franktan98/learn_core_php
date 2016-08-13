@@ -63,15 +63,12 @@
                         <li>Breath First Search</li>
                         <li>Binary Search</li>
                     </ul>
-                    
-
                     GOF Design Pattern
                     <ul>
                         <li><a href="#" target="sample">MVC</a></li>
                         <li>Creation</li>
                         <li>Creation</li>
                     </ul>
-
                     Data Structure
                     <ul>
                         <li>Link List</li>
@@ -80,7 +77,6 @@
                         <li>Tree</li>
                         <li>Graph</li>
                     </ul>
-                    
                     Topic to study
                     <ul>
                         <li>Dynamic Programming</li>

@@ -1,11 +1,11 @@
 RewriteEngine on
 
-ErrorDocument 400 /learn_php/welcome.php/400
-ErrorDocument 401 /learn_php/welcome.php/401
-ErrorDocument 403 /learn_php/welcome.php/403
-ErrorDocument 404 /learn_php/welcome.php/404
+ErrorDocument 400 /learn_php/core/SimpleLite.php/400
+ErrorDocument 401 /learn_php/core/SimpleLite.php/401
+ErrorDocument 403 /learn_php/core/SimpleLite.php/403
+ErrorDocument 404 /learn_php/core/SimpleLite.php/404
 
-ErrorDocument 500 /learn_php/welcome.php/500
+ErrorDocument 500 /learn_php/core/SimpleLite.php/500
 
-RewriteRule ^index.php$ welcome.php
-RewriteRule ^$ welcome.php
+RewriteRule ^index.php$ core/SimpleLite.php
+RewriteRule ^$ core/SimpleLite.php
