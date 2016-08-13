@@ -16,7 +16,6 @@ defined('SAFE_CALL') OR exit('No direct script access allowed');
  * @author frank
  */
 class Simple_Text {
-
     private $file_name;
     private $store_directory;
 

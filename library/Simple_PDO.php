@@ -9,13 +9,13 @@ use SimpleLibrary\Simple_Log;
 use \PDO;
 
 class Simple_PDO {
-    private $database_host;
-    private $database_name;
-    private $database_user;
-    private $database_password;
-    private $database_system_name;
-    private $error_message;
-    private $sql_string;
+    private $database_host_s;
+    private $database_name_s;
+    private $database_user_s;
+    private $database_password_s;
+    private $database_system_name_s;
+    private $error_message_g;
+    private $sql_string_sg;
     private $database_handler;
     private $log_handler;
 
@@ -61,16 +61,44 @@ class Simple_PDO {
      * 
      * @return string error message 
      */
-    public function get_error_message() {
-        return $this->error_message;
+    /**
+     * lazy get for php
+     * version support (PHP 5 >= 5.1.0, PHP 7) aupport property_exists function
+     * by using postfix _s,_g or _sg to define set or get function to the property define.
+     * simple, easy, lazy and clear for lazy programmer.
+     * 
+     * @param string $source_property
+     * @return any_datatype any data type may return by the property may be array ,object or a string
+     */
+    public function __get($source_property) {
+        $property_name_sg = $source_property . '_sg';
+        $property_name_g = $source_property . '_g';
+        if (property_exists($this, $property_name_sg)) {
+            return $this->$property_name_sg;
+        }
+        if (property_exists($this, $property_name_g)) {
+            return $this->$property_name_g;
+        }
     }
 
-    public function get_sql() {
-        return $this->sql_string;
-    }
-
-    public function set_sql($source_sql) {
-        $this->sql_string = $source_sql;
+    /**
+     * lazy set for php
+     * version support (PHP 5 >= 5.1.0, PHP 7) aupport property_exists function
+     * by using postfix _s,_g or _sg to define set or get function to the property define.
+     * simple, easy, lazy and clear for lazy programmer.
+     * 
+     * @param string $source_property the name of the property
+     * @param any_datatype $source_value this may i=b an object,array or any datatype
+     */
+    public function __set($source_property,$source_value) {
+        $property_name_sg = $source_property . '_sg';
+        $property_name_s = $source_property . '_s';
+        if (property_exists($this, $property_name_sg)) {
+            $this->$property_name_sg = $source_value;
+        }
+        if (property_exists($this, $property_name_s)) {
+            $this->$property_name_s = $source_value;
+        }
     }
 
     /**
