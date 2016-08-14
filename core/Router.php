@@ -78,8 +78,18 @@ class Router {
         $this->xml_route_list_file = ROUTER_LIST ;
         $this->loaded_class = null;
         
+        $this->analyst_input();
         $this->load_router_list() ;
         $this->route();
+    }
+    
+    private function analyst_input(){
+//        $this->method_g = $_SERVER['REQUEST_METHOD'];
+        echo '<br />method : '. $this->method_g ;
+        echo '<br />data GET : '. var_dump( $_GET );
+        echo '<br />data POST : '. var_dump( $_POST );
+//        echo '<br />data receive : '. var_dump( $_GET );
+        
     }
     
     private function load_router_list(){
@@ -97,29 +107,29 @@ class Router {
     private function analyst_parameter_receive($source_parameter){
         $return_value = null;
         $process_value = explode( '/' , $source_parameter );
-        $source_class = '';
-        $source_function = '' ; 
         
-        isset($process_value[0])? $source_class = $process_value[0] : null ;
-        isset($process_value[1])? $source_function = $process_value[1] : null ;
-        
+        isset($process_value[0])? $source_controller = $process_value[0] : null ;
+        isset($process_value[1])? $source_method = $process_value[1] : $source_method=DEFAULT_METHOD ;
+        (count($source_controller )==0)?$source_controller= DEFAULT_CONTROLLER:null ; 
+
         $return_value['original'] = $source_parameter ; 
         
         foreach( $this->router_list as $item ){
-            in_array( $source_class  , $item ) ? $return_value['class_call'] = $item['link'].'' : null ; 
+            in_array( $source_controller  , $item ) ? $return_value['class_call'] = $item['link'].'' : null ; 
         }
         isset( $return_value['class_call'] ) ?  $return_value['from_route']=true : $return_value['from_route']= false ; 
 
-        file_exists(__DIR__.'/../'.CONTROLLERS_DIR .$source_class.'.php')
-                ? $return_value['class_call'] = $source_class.'' 
+        file_exists(__DIR__.'/../'.CONTROLLERS_DIR .$source_controller.'.php')
+                ? $return_value['class_call'] = $source_controller.'' 
                 : null;
-        $return_value['method_call'] = $source_function;
+        $return_value['method_call'] = $source_method;
 
         for($parameter_counter = 2 ; $parameter_counter < count($process_value); $parameter_counter++){
             $return_value['parameter'][] = $process_value[$parameter_counter] ;
         }
+        count($process_value) <= 2 ? $return_value['parameter']=array() : null;
                 
-        $this->route_parameter =  $return_value ; 
+        $this->route_parameter =  $return_value ;
     }
     
     private function route(){
@@ -143,12 +153,7 @@ class Router {
     }
     
     private function load_method( $source_method){
-        echo 'method ' . $source_method ; 
         $return_value  = 0 ;
-        
-        echo var_dump($source_method);
-        echo var_dump( $this->route_parameter);
-        
 /*
         $parameter_request = new ReflectionMethod($this->loaded_class, $source_method);
         $method_parameter = $parameter_request->getParameters();

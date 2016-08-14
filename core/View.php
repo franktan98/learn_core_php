@@ -63,7 +63,6 @@ EOD;
     
     private function load_page($source_url, array $source_parameter = null){
         //$file = file_get_contents($source_url, true);
-        echo var_dump($source_parameter);
         is_null($source_parameter)?$source_parameter = array() : null ; 
         ob_start();
         foreach($source_parameter as $key => $value ){

@@ -50,13 +50,13 @@ class ReportGenerate extends Controller{
         echo $this->view->show_page($url_show,$this->model );
 
         // push display into pdf file
-        $pdf_output = new Simple_PDF('a','a');
+//        $pdf_output = new Simple_PDF('a','a');
     }
     
-    public function temp($parameter1){
+    public function temp($parameter1='a'){
         echo "parameter 1 : $parameter1";
     }
-    public function temp2($parameter1,$parameter2){
+    public function temp2($parameter1='a',$parameter2='b'){
         echo "parameter 1 : $parameter1";
         echo "parameter 2 : $parameter2";
     }
