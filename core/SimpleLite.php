@@ -7,9 +7,9 @@
      * </p>
      * load related php file
      */
-    require_once '../setting/config.php' ;
-    require_once '../setting/loading_list.php' ;
-    require_once '../core/Router.php' ;
+    require_once __DIR__.'/../setting/config.php' ;
+    require_once __DIR__.'/../setting/loading_list.php' ;
+    require_once __DIR__.'/../core/Router.php' ;
 
     use Tools\Router ;
     use SimpleLibrary\Simple_Log ;

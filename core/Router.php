@@ -2,7 +2,7 @@
 namespace Tools;
 defined('SAFE_CALL') OR exit('No direct script access allowed');
 
-//use \SimpleXMLElement ; 
+use \ReflectionMethod;
 /**
  * Description of Router class
  * this router use to collect all infromation pass from the url or uri
@@ -44,6 +44,7 @@ class Router {
     private $router_list ;
     private $xml_route_list_file ;
     private $loaded_class ; 
+    private $route_parameter ; 
     
     /**
      * get all information needed ; 
@@ -93,62 +94,71 @@ class Router {
         }
     }
     
-    private function route(){
-        $temp = explode( '/' , $this->uri );
-        $route_link = '' ;
-        $source_key = $temp[0] ;
+    private function analyst_parameter_receive($source_parameter){
+        $return_value = null;
+        $process_value = explode( '/' , $source_parameter );
+        $source_class = '';
+        $source_function = '' ; 
+        
+        isset($process_value[0])? $source_class = $process_value[0] : null ;
+        isset($process_value[1])? $source_function = $process_value[1] : null ;
+        
+        $return_value['original'] = $source_parameter ; 
+        
+        foreach( $this->router_list as $item ){
+            in_array( $source_class  , $item ) ? $return_value['class_call'] = $item['link'].'' : null ; 
+        }
+        isset( $return_value['class_call'] ) ?  $return_value['from_route']=true : $return_value['from_route']= false ; 
 
-        $list = $this->router_list; 
-        foreach( $list as $item ){
-            in_array( $source_key  , $item ) ? $route_link = $item['link'].'' : null ; 
+        file_exists(__DIR__.'/../'.CONTROLLERS_DIR .$source_class.'.php')
+                ? $return_value['class_call'] = $source_class.'' 
+                : null;
+        $return_value['method_call'] = $source_function;
+
+        for($parameter_counter = 2 ; $parameter_counter < count($process_value); $parameter_counter++){
+            $return_value['parameter'][] = $process_value[$parameter_counter] ;
         }
-//        echo var_dump('../'.CONTROLLERS_DIR .  $route_link.'.php');
-//        echo var_dump(file_exists( '../'.CONTROLLERS_DIR .  $route_link.'.php'));
-        file_exists('../'.CONTROLLERS_DIR .  $route_link.'.php') ? $this->load_file($route_link , $temp) : null ;
+                
+        $this->route_parameter =  $return_value ; 
     }
     
-    private function load_file($source_file , $source_parameter ){
-        require_once '../'.CONTROLLERS_DIR.$source_file .'.php';
-        class_exists($source_file)? $this->load_class( $source_file , $source_parameter ) : null ;
+    private function route(){
+        $this->analyst_parameter_receive($this->uri);
+        
+        file_exists(__DIR__.'/../'.CONTROLLERS_DIR. $this->route_parameter['class_call'].'.php') 
+                ? $this->load_file($this->route_parameter['class_call']) 
+                : null ;
     }
     
-    private function load_class( $source_class , $source_parameter ){
-        echo var_dump($source_class);
-        echo var_dump($source_parameter);
-        $function_call = DEFAULT_FUNCTION ; 
+    private function load_file($source_file ){
+        require_once __DIR__.'/../'.CONTROLLERS_DIR.$source_file .'.php';
+        class_exists($source_file)? $this->load_class( $source_file ) : null ;
+    }
+    
+    private function load_class( $source_class  ){
         $this->loaded_class = new $source_class();
-        switch ( count($source_parameter) ){
-            case 0 :
-                $function_call = DEFAULT_FUNCTION ; 
-            case 1 : 
-                $function_call = DEFAULT_FUNCTION ; 
-                break;
-            case 2 : 
-                $function_call = $source_parameter[1] ; 
-                break;
-            case 3 : 
-                $function_call = $source_parameter[1] ; 
-                $this->preparing_parameter($source_parameter);
-                break;
-            default : 
-                $function_call = $source_parameter[1] ; 
-                $this->preparing_parameter($source_parameter);
-                break;
-        }
-        $function_call = 'index';
-        method_exists($this->loaded_class , $function_call)? $this->loaded_class->$function_call() : null ;
+        method_exists($this->loaded_class , $this->route_parameter['method_call'])
+                ? $this->load_method( $this->route_parameter['method_call'])
+                : null ;
     }
     
-    private function preparing_parameter( $source_parameter){
+    private function load_method( $source_method){
+        echo 'method ' . $source_method ; 
         $return_value  = 0 ;
         
-        var_dump($source_parameter);
+        echo var_dump($source_method);
+        echo var_dump( $this->route_parameter);
         
-        $ref = new ReflectionMethod($this, 'myFunction');
-        foreach( $ref->getParameters() as $param) {
-            $name = $param->name;
-            $this->$name = $$name;
+/*
+        $parameter_request = new ReflectionMethod($this->loaded_class, $source_method);
+        $method_parameter = $parameter_request->getParameters();
+        foreach( $parameter_request->getParameters() as $parameter) {
+            $name = $parameter->name;
+            echo '<br /> parameter name : '. $name ; 
         }
+*/        
+//        $this->loaded_class->$source_method();         
+        call_user_func_array(array($this->loaded_class,$source_method), $this->route_parameter['parameter']);
         
         return $return_value ; 
     }

@@ -5,8 +5,8 @@ namespace SimpleLibrary;
 
 defined('SAFE_CALL') OR exit('No direct script access allowed');
 
-require_once('../third_party/tcpdf/tcpdf.php');
-require_once 'Simple_Log.php';
+require_once __DIR__.'/../third_party/tcpdf/tcpdf.php';
+require_once __DIR__.'/Simple_Log.php';
 
 use SimpleLibrary\Simple_Log;
 
@@ -59,11 +59,11 @@ class Simple_PDF{
         }
     }
     
-    public function __construct($source_file_name ,$source_header, $source_footer, $source_content) {
+    public function __construct($source_file_name , $source_content) {
         $this->init_class(); 
         $this->__set('filename',$source_file_name);
-        $this->__set('header',$source_header);
-        $this->__set('footer',$source_footer);
+        //$this->__set('header',$source_header);
+        //$this->__set('footer',$source_footer);
         $this->__set('content',$source_content);
     }
 

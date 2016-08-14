@@ -3,7 +3,7 @@ namespace SimpleLibrary;
 
 defined('SAFE_CALL') OR exit('No direct script access allowed');
 
-require_once 'Simple_Log.php';
+require_once __DIR__.'/Simple_Log.php';
 
 use SimpleLibrary\Simple_Log;
 use \PDO;
@@ -106,20 +106,20 @@ class Simple_PDO {
      * @return boolean return true when connection is valid, else just return false
      */
     public function preparing_connection() {
-        $connection_string = "$this->database_system_name:host=$this->database_host;dbname=$this->database_name";
+        $connection_string = "$this->database_system_name_s:host=$this->database_host_s;dbname=$this->database_name_s";
         $this->log_handler->log_me('debug', 'database connection preparing : ' . date("Y-m-d H:i:s"));
         $this->log_handler->log_me('debug', 'connection string :' . $connection_string);
-        $this->log_handler->log_me('debug', 'user :' . $this->database_user);
+        $this->log_handler->log_me('debug', 'user :' . $this->database_user_s);
         try {
             // set the PDO error mode to exception
             //$this->database_handler->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            $this->database_handler = new PDO($connection_string, $this->database_user, $this->database_password);
+            $this->database_handler = new PDO($connection_string, $this->database_user_s, $this->database_password_s);
             $return_value = true;
         } catch (PDOException $ex) {
-            $this->error_message = $ex->getMessage();
+            $this->error_message_g = $ex->getMessage();
             $return_value = false;
             $this->log_handler->log_me('emergency', 'connection string :' . $connection_string);
-            $this->log_handler->log_me('emergency', 'user :' . $this->database_user);
+            $this->log_handler->log_me('emergency', 'user :' . $this->database_user_s);
             $this->log_handler->log_me('emergency', 'Connection Fail' . $ex->getMessage());
         }
         return $return_value;
@@ -140,18 +140,18 @@ class Simple_PDO {
     public function execute_query($parameter ) {
         $return_result = null;
         $this->log_handler->log_me('debug', 'preparing to execute query : ' . date("Y-m-d H:i:s"));
-        $this->log_handler->log_me('debug', 'execute query ' . $this->sql_string);
+        $this->log_handler->log_me('debug', 'execute query ' . $this->sql_string_sg);
         try {
             $this->database_handler->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            $statement = $this->database_handler->prepare($this->sql_string);
+            $statement = $this->database_handler->prepare($this->sql_string_sg);
             $statement->execute($parameter);
             
             $return_result = $statement->fetchAll(PDO::FETCH_CLASS);
         } catch (PDOException $ex) {
-            $this->error_message = $ex->getMessage();
+            $this->error_message_g = $ex->getMessage();
             $return_result = null;
             $this->log_handler->log_me('error', 'execute query at : ' . date("Y-m-d H:i:s"));
-            $this->log_handler->log_me('error', 'execute query ' . $this->sql_string);
+            $this->log_handler->log_me('error', 'execute query ' . $this->sql_string_sg);
             $this->log_handler->log_me('error', 'Query execution fail' . $ex->getMessage());
         }
         return $return_result;
@@ -160,22 +160,21 @@ class Simple_PDO {
     public function execute() {
         $return_result = 0;
         $this->log_handler->log_me('debug', 'preparing to execute sql command : ' . date("Y-m-d H:i:s"));
-        $this->log_handler->log_me('debug', 'execute sql command ' . $this->sql_string);
+        $this->log_handler->log_me('debug', 'execute sql command ' . $this->sql_string_sg);
         try {
             // set the PDO error mode to exception
             $this->database_handler->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            $statement = $this->database_handler->prepare($this->sql_string);
+            $statement = $this->database_handler->prepare($this->sql_string_sg);
             $statement->execute();
             
             $return_result = $statement->rowCount();
         } catch (PDOException $ex) {
-            $this->error_message = $ex->getMessage();
+            $this->error_message_g = $ex->getMessage();
             $return_result = 0;
             $this->log_handler->log_me('error', 'execute sql command at : ' . date("Y-m-d H:i:s"));
-            $this->log_handler->log_me('error', 'execute sql command ' . $this->sql_string);
+            $this->log_handler->log_me('error', 'execute sql command ' . $this->sql_string_sg);
             $this->log_handler->log_me('error', 'Query execution fail' . $ex->getMessage());
         }
         return $return_result;
         }
-
 }

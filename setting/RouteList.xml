@@ -4,5 +4,9 @@
         <key>World</key>
         <link>Hello</link>
     </route>
+    <route>
+        <key>Wor</key>
+        <link>ReportGenerate</link>
+    </route>
         
 </router_infor> 

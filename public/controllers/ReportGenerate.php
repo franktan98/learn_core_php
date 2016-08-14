@@ -1,11 +1,13 @@
 <?php
 //defined('SAFE_CALL') OR exit('No direct script access allowed');
 
-require_once '../config.php';
-require_once '../core/Controller.php';
-require_once '../core/View.php';
-require_once '../model/ActionModel.php';
-require_once '../library/Simple_PDF.php';
+//require_once __DIR__.'/../../setting/config.php';
+require_once __DIR__.'/../../core/Controller.php';
+require_once __DIR__.'/../../core/View.php';
+require_once __DIR__.'/../../public/models/ActionModel.php';
+require_once __DIR__.'/../../library/Simple_PDF.php';
+
+use SimpleLibrary\Simple_PDF ; 
 
 class ReportGenerate extends Controller{
     private function init_class(){
@@ -25,8 +27,8 @@ class ReportGenerate extends Controller{
           'temp2'=> array('test2'=>'value2',
               'test3'=>'value3'),
         );
-//        $temp->set_sql('SELECT NOW(), CURDATE(), CURTIME()' );
-//        $this->model['database_dt'] = $temp->extract_data() ; 
+        $temp->set_sql('SELECT NOW(), CURDATE(), CURTIME()' );
+        $this->model['database_dt'] = $temp->extract_data() ; 
 /*
         $temp->set_sql('SELECT USER(), CURRENT_USER(),DATABASE()' );
         $this->model['database_detail'] = $temp->extract_data() ; 
@@ -41,18 +43,22 @@ class ReportGenerate extends Controller{
         
         //$this->view->skip_cert($certskip);
         //$url_show = 'http://localhost/agsap/view/welcome.php' ; 
-        $url_show = '../view/welcome.php' ; 
+        $url_show = '../public/view/welcome.php' ; 
         //$url_show = 'https://www.publicgold.com.my/cart1/view/welcome.php' ; 
 
         //echo $this->view->show_page(${'url_show'},$this->model );
         echo $this->view->show_page($url_show,$this->model );
 
         // push display into pdf file
-        $pdf_output = new Simple_PDF();
-        
-        
-        
-
+        $pdf_output = new Simple_PDF('a','a');
+    }
+    
+    public function temp($parameter1){
+        echo "parameter 1 : $parameter1";
+    }
+    public function temp2($parameter1,$parameter2){
+        echo "parameter 1 : $parameter1";
+        echo "parameter 2 : $parameter2";
     }
 
 /*
@@ -71,7 +77,9 @@ class ReportGenerate extends Controller{
     }
 */    
 }
-
+/*
 $temp = new ReportGenerate();
 
 $temp->index();
+ 
+ */

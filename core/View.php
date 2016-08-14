@@ -18,6 +18,17 @@ class View{
         $this->footer_script = null ;
         $this->temp_cert_check = null ;
         $this->page_template_request = true ; 
+        $curent_datetime = date("Y-m-d H:i:s");
+        $this->header = <<<EOD
+<!DOCTYPE html>
+<html>
+    <head><title>Default $curent_datetime </title></head>
+    <body>
+EOD;
+        $this->footer = <<<EOD
+    </body>
+</html>
+EOD;
     }
     
     public function __construct() {
@@ -25,10 +36,6 @@ class View{
     }
     
     public function index(){
-    }
-    
-    public function skip_cert($source_temp){
-        $this->temp_cert_check = $source_temp ; 
     }
     
     public function show_page( $source_page_name , $source_parameter = null){
@@ -43,13 +50,10 @@ class View{
         }
         $return_value = $return_value . $this->header;
         
-        //$page_parameter = $source_parameter ; 
-        
         $url_execute = $source_page_name;
         $parameter = $source_parameter ; 
         
         //use CURL to execute and generate View or Report
-        //$return_value = $return_value . $this->curl_post($url_execute , $parameter );
         $return_value = $return_value . $this->load_page($url_execute , $parameter );
         
         $return_value = $return_value ."\r\n". $this->footer;
@@ -65,45 +69,9 @@ class View{
         foreach($source_parameter as $key => $value ){
             $$key = $value ;
         }
-        require $source_url ; 
+        require __DIR__.'/'.$source_url ; 
         $return_value = ob_get_clean();
         return $return_value;
-    }
-    
-    private function curl_post($source_url, array $source_post = null , array $source_options = array()){
-    // this part of code is copy from php.net curl-exec manual
-    // Contributed by David from Code2Design.com
-    // just change some variable name make it more understandable 
-        $defaults = array(
-            CURLOPT_POST => 1,
-            CURLOPT_HEADER => 1,
-            CURLOPT_URL => $source_url,
-            CURLOPT_FRESH_CONNECT => 1,
-            CURLOPT_RETURNTRANSFER => 1,
-            CURLOPT_FORBID_REUSE => 1,
-            CURLOPT_TIMEOUT => 2,
-            CURLOPT_SSL_VERIFYPEER => false,
-            CURLOPT_POSTFIELDS => http_build_query($source_post)
-        );
-
-        if ( !($this->temp_cert_check === null ) ){
-            $source_options = $this->temp_cert_check ;
-        }
-        $curl_handler = curl_init();
-        
-        curl_setopt_array($curl_handler, ($source_options + $defaults));
-        
-        if( ! $return_result = curl_exec($curl_handler) )
-        {
-//            $return_result = 'tets';
-            trigger_error(curl_error($curl_handler));
-        }
-        
-//var_dump(curl_exec($curl_handler)); 
-//var_dump(curl_getinfo($curl_handler)); 
-//var_dump(curl_error($curl_handler)); 
-        curl_close($curl_handler);
-        return $return_result;
     }
     
     public function use_template($template_request){
@@ -111,27 +79,16 @@ class View{
     }
     
     public function set_page_title($source_title='Default'){
-        $this->page_title = $source_title ; 
+        $this->page_title = $source_title ;
     }
     
     public function set_header($source_header=''){
-        $this->header = <<<EOD
-<!DOCTYPE html>
-<html>
-    <head><title>$this->page_title</title></head>
-    <body>
-EOD;
         if ( strlen($source_header) >= 1 ){
             $this->header = $source_header ; 
         }
     }
     
     public function set_footer($source_footer =''){
-        // default 
-        $this->footer = <<<EOD
-    </body>
-</html>
-EOD;
         if ( strlen( $source_footer ) >= 1 ){
             $this->footer = $source_footer ;
         }

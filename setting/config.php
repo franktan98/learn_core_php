@@ -30,6 +30,12 @@
     defined('LOG_NAME')  OR define('LOG_NAME', 'log');
     
     // DATABASE SETTING 
+    defined('DATABASE_SYSTEM') OR define('DATABASE_SYSTEM','mysql');
+    defined('DATABASE_HOST') OR define('DATABASE_HOST','localhost');
+    defined('DATABASE_PORT') OR define('DATABASE_PORT','3306');
+    defined('DATABASE_NAME') OR define('DATABASE_NAME','gsap');
+    defined('DATABASE_USER') OR define('DATABASE_USER','aaaa');
+    defined('DATABASE_PASSWORD') OR define('DATABASE_PASSWORD','aaaa');
 /*    
     defined('DEFAULT_DATABASE') OR define('DEFAULT_DATABASE'
             ,array(
